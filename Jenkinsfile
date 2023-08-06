@@ -85,7 +85,7 @@ pipeline {
 
     stage('Deploying flask python container to Kubernetes') {
       steps {
-        script {
+        container('docker') {
           kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
         }
       }
