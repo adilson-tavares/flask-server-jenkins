@@ -1,7 +1,1 @@
-bcrypt==3.2.2
-blinker==1.5
-gyp==0.1
-httplib2==0.20.4
-PyJWT==2.6.0
-zipp==1.0.0
 flask
