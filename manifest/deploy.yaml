@@ -3,17 +3,17 @@ kind: Deployment
 metadata:
   name: flask-app-deployment
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: test-app
+      app: flask-app-deployment
   template:
     metadata:
       labels:
-        app: test-app
+        app: flask-app-deployment
     spec:
       containers:
-      - name: test-app
+      - name: tflask-app-deployment
         image: tavarescruz/python-flask:latest
         resources:
           limits:
