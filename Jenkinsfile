@@ -96,14 +96,12 @@ pipeline {
     //   }
     // }
 
-  }
-
-  stages{
     stage('Apply Kubernetes files') {
-        withKubeConfig([credentialsId: 'jenkins-kind', serverUrl: 'https://192.168.49.2:8443']) {
-          sh 'kubectl apply -f my-kubernetes-directory'
-        }
+      withKubeConfig([credentialsId: 'jenkins-kind', serverUrl: 'https://192.168.49.2:8443']) {
+        sh 'kubectl apply -f deploy.yaml'
     }
+    }
+
   }
 
     // node (POD_LABEL){
