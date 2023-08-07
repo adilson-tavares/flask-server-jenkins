@@ -29,6 +29,7 @@ pipeline {
               path: /var/run/docker.sock    
         '''
     }
+
   }
 
     // agent {
@@ -83,19 +84,31 @@ pipeline {
     }
 
 
-    stage('Deploying flask python container to Kubernetes') {
-      steps {
-        // container('docker') {
-        //   kubernetesDeploy(configs: "deploy.yaml", "service.yaml", kubeconfigId: "jenkins-kind")
-        // }
-        container('docker') {
-            sh "kubectl apply -f deploy.yaml"
-            sh "kubectl apply -f service.yaml"
-        }
-      }
-    }
+    // stage('Deploying flask python container to Kubernetes') {
+    //   steps {
+    //     // container('docker') {
+    //     //   kubernetesDeploy(configs: "deploy.yaml", "service.yaml", kubeconfigId: "jenkins-kind")
+    //     // }
+    //     container('docker') {
+    //         sh "kubectl apply -f deploy.yaml"
+    //         sh "kubectl apply -f service.yaml"
+    //     }
+    //   }
+    // }
 
   }
+
+  stages{
+    stage('Apply Kubernetes files') {
+        withKubeConfig([credentialsId: 'jenkins-kind', serverUrl: 'https://192.168.49.2:8443']) {
+          sh 'kubectl apply -f my-kubernetes-directory'
+        }
+    }
+  }
+
+    // node (POD_LABEL){
+
+    // }
   post {
     always {
       sh 'docker logout'
