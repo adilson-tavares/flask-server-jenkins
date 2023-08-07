@@ -77,11 +77,12 @@ pipeline {
 
 
     stage('Deploying flask python container to Kubernetes') {
-        stage('Apply Kubernetes files') {
-              // withKubeConfig([credentialsId: 'jenkins-kind', serverUrl: 'https://192.168.49.2:8443']) {
+       // steps('Apply Kubernetes files') 
+       steps{
+              //  withKubeConfig([credentialsId: 'jenkins-kind', serverUrl: 'https://192.168.49.2:8443']) {
                 sh 'kubectl apply -f deploy.yaml'
                 sh 'kubectl apply -f service.yaml'
-            // }
+            //  }
         }
 
     }
