@@ -32,14 +32,6 @@ pipeline {
 
   }
 
-    // agent {
-    //     docker { image 'node:18.16.0-alpine' }
-    // }
-
-  // environment {
-  //   DOCKERHUB_CREDENTIALS = credentials('dokcerhub-credentials')
-  // }
-
   stages {
     stage('Checkout Source') {
       steps {
@@ -85,15 +77,12 @@ pipeline {
 
 
     stage('Deploying flask python container to Kubernetes') {
-    node{
-    stage('Apply Kubernetes files') {
-          withKubeConfig([credentialsId: 'jenkins-kind', serverUrl: 'https://192.168.49.2:8443']) {
-            sh 'kubectl apply -f deploy.yaml'
-            sh 'kubectl apply -f service.yaml'
+        stage('Apply Kubernetes files') {
+              withKubeConfig([credentialsId: 'jenkins-kind', serverUrl: 'https://192.168.49.2:8443']) {
+                sh 'kubectl apply -f deploy.yaml'
+                sh 'kubectl apply -f service.yaml'
+            }
         }
-    }
-
-    }
 
     }
 
