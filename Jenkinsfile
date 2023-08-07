@@ -29,15 +29,6 @@ pipeline {
               path: /var/run/docker.sock    
         '''
     }
-    node{
-    stage('Apply Kubernetes files') {
-          withKubeConfig([credentialsId: 'jenkins-kind', serverUrl: 'https://192.168.49.2:8443']) {
-            sh 'kubectl apply -f deploy.yaml'
-            sh 'kubectl apply -f service.yaml'
-        }
-    }
-
-    }
 
   }
 
@@ -93,17 +84,18 @@ pipeline {
     }
 
 
-    // stage('Deploying flask python container to Kubernetes') {
-    //   steps {
-    //     // container('docker') {
-    //     //   kubernetesDeploy(configs: "deploy.yaml", "service.yaml", kubeconfigId: "jenkins-kind")
-    //     // }
-    //     container('docker') {
-    //         sh "kubectl apply -f deploy.yaml"
-    //         sh "kubectl apply -f service.yaml"
-    //     }
-    //   }
-    // }
+    stage('Deploying flask python container to Kubernetes') {
+    node{
+    stage('Apply Kubernetes files') {
+          withKubeConfig([credentialsId: 'jenkins-kind', serverUrl: 'https://192.168.49.2:8443']) {
+            sh 'kubectl apply -f deploy.yaml'
+            sh 'kubectl apply -f service.yaml'
+        }
+    }
+
+    }
+
+    }
 
   }
 
