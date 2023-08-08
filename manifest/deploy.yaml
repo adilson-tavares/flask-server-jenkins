@@ -13,7 +13,7 @@ spec:
         app: test-app
     spec:
       containers:
-      - name: test-app
+      - name: flask-test-contianer
         image: tavarescruz/python-flask:latest
         resources:
           limits:
