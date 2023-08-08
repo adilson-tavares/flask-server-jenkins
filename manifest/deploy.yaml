@@ -13,7 +13,7 @@ spec:
         app: flask-app-deployment
     spec:
       containers:
-      - name: tflask-app-deployment
+      - name: flask-app-deployment
         image: tavarescruz/python-flask:latest
         resources:
           limits:
