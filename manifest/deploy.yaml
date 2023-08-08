@@ -6,11 +6,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: test-app
+      app: flask-app-deployment
   template:
     metadata:
       labels:
-        app: test-app
+        app: flask-app-deployment
     spec:
       containers:
       - name: flask-test-contianer
