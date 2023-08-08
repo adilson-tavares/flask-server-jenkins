@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: todo-app
+  name: flask-app-service
 spec:
   containers:
-  - name: todo-app
+  - name: test-app-flask
     image: tavarescruz/python-flask:latest
     ports:
     - containerPort: 5000
