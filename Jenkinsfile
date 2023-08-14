@@ -52,7 +52,7 @@ pipeline {
           //  sh 'docker build -t tavarescruz/python-flask:latest .'
             echo "for brnach ${env.BRANCH_NAME}"
             sh "docker build -t ${IMAGENAME} ."
-            sh "docker tag ${IMAGENAME}:latest tavares-cruz/${IMAGENAME}:${VERSION}"
+            sh "docker tag ${IMAGENAME} tavares-cruz/${IMAGENAME}:${VERSION}"
         }
       }
     }
