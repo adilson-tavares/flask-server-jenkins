@@ -50,9 +50,9 @@ pipeline {
         // }
         container('docker') {
           //  sh 'docker build -t tavarescruz/python-flask:latest .'
-            echo "for brnach ${env.BRANCH_NAME}"
-            sh "docker build -t tavares-cruz/${IMAGENAME} ."
-            sh "docker tag ${IMAGENAME}:latest tavares-cruz/${IMAGENAME}:${VERSION}"
+            echo "for branch ${env.BRANCH_NAME}"
+            sh "docker build -t tavarescruz/${IMAGENAME} ."
+            sh "docker tag ${IMAGENAME}:latest tavarescruz/${IMAGENAME}:${VERSION}"
         }
       }
     }
