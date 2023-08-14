@@ -9,6 +9,7 @@ pipeline {
     registryCredential = credentials('docker-hub-credential')
     IMAGENAME = "service-flask"
     IMAGE = "${NAME}:${VERSION}"
+    VERSION = "${env.BUILD_ID}-${env.GIT_COMMIT}"
   }
 
   agent {
