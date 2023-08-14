@@ -82,6 +82,31 @@ pipeline {
       }
     }
 
+    stage('Checkout Source k8s manifest') {
+      steps {
+        git branch: 'main', url: 'https://github.com/adilson-tavares/jenkins-webhook.git'
+        credentialsId: 'github-credential'
+      }
+    }
+
+    stage('Update K8S manifest & push to Repo'){
+      steps {
+          script{
+              withCredentials([usernamePassword(credentialsId: 'github-credential', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                  sh '''
+                  cat deploy.yaml
+                  sed -i '' "s/32/${BUILD_NUMBER}/g" deploy.yaml
+                  cat deploy.yaml
+                  git add deploy.yaml
+                  git commit -m 'Updated the deploy yaml | Jenkins Pipeline'
+                  git remote -v
+                  git push https://github.com/adilson-tavares/jenkins-webhook.git HEAD:main
+                  '''                        
+              }
+          }
+      }
+        }
+
 
     // stage('Deploying flask python container to Kubernetes') {
     //    // steps('Apply Kubernetes files') 
