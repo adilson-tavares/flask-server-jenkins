@@ -77,7 +77,7 @@ pipeline {
     stage('Push Image to DockerHub') {
       steps {
         container('docker') {
-          sh 'docker push tavarescruz/python-flask:latest'
+          sh "docker push tavarescruz/${IMAGENAME}:${VERSION}"
         }
       }
     }
