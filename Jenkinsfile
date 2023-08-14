@@ -1,12 +1,14 @@
 pipeline {
 
-  environment {
-    IMAGENAME = "service-flask"
-    IMAGE = "${NAME}:${VERSION}"
-    // dockerImage = ""
-  }
+  // environment {
+  //   IMAGENAME = "service-flask"
+  //   IMAGE = "${NAME}:${VERSION}"
+  //   // dockerImage = ""
+  // }
   environment {
     registryCredential = credentials('docker-hub-credential')
+    IMAGENAME = "service-flask"
+    IMAGE = "${NAME}:${VERSION}"
   }
 
   agent {
