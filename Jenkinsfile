@@ -95,9 +95,9 @@ pipeline {
               withCredentials([usernamePassword(credentialsId: 'github-credential', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                   sh '''
                   cat deploy.yaml
-                  sed -i '' "s/32/${BUILD_NUMBER}/g" deploy.yaml
+                  sed -i '' "s/32/${BUILD_NUMBER}/g" flask-service/deploy.yaml
                   cat deploy.yaml
-                  git add deploy.yaml
+                  git add flask-service/deploy.yaml
                   git commit -m 'Updated the deploy yaml | Jenkins Pipeline'
                   git remote -v
                   git push https://github.com/adilson-tavares/jenkins-webhook.git HEAD:main
