@@ -1,9 +1,10 @@
 pipeline {
 
-  // environment {
-  //   dockerimagename = "tavarescruz/react-app"
-  //   dockerImage = ""
-  // }
+  environment {
+    IMAGENAME = "service-flask"
+    IMAGE = "${NAME}:${VERSION}"
+    // dockerImage = ""
+  }
   environment {
     registryCredential = credentials('docker-hub-credential')
   }
@@ -45,7 +46,10 @@ pipeline {
         //   dockerImage = docker.build dockerimagename
         // }
         container('docker') {
-           sh 'docker build -t tavarescruz/python-flask:latest .'
+          //  sh 'docker build -t tavarescruz/python-flask:latest .'
+            echo "for brnach ${env.BRANCH_NAME}"
+            sh "docker build -t ${IMAGENAME} ."
+            sh "docker tag ${IMAGENAME}:latest tavares-cruz/${IMAGENAME}:${VERSION}"
         }
       }
     }
