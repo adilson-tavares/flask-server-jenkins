@@ -40,7 +40,7 @@ pipeline {
     stage('Checkout Source') {
       steps {
         git branch: 'main', url: 'https://github.com/adilson-tavares/flask-server-jenkins.git',
-        credentialsId: 'github-credentials'
+        // credentialsId: 'github-credentials'
       }
     }
     stage('Build image') {
