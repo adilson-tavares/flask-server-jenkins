@@ -82,12 +82,12 @@ pipeline {
       }
     }
 
-    stage('Checkout Source k8s manifest') {
-      steps {
-        git branch: 'main', url: 'https://github.com/adilson-tavares/jenkins-webhook.git',
-        credentialsId: 'github-credential'
-      }
-    }
+    // stage('Checkout Source k8s manifest') {
+    //   steps {
+    //     git branch: 'main', url: 'https://github.com/adilson-tavares/jenkins-webhook.git',
+    //     credentialsId: 'github-credential'
+    //   }
+    // }
 
     stage('Update K8S manifest & push to Repo'){
       steps {
