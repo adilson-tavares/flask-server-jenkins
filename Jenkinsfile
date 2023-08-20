@@ -85,14 +85,14 @@ pipeline {
     stage('Checkout Source k8s manifest') {
       steps {
         git branch: 'main', url: 'https://github.com/adilson-tavares/jenkins-webhook.git',
-        credentialsId: 'github-credential'
+        // credentialsId: 'github-credential'
       }
     }
 
     stage('Update K8S manifest & push to Repo'){
       steps {
           script{
-              // withCredentials([gitUsernamePassword(credentialsId: 'github-credential', gitToolName: 'git-tool')]) {
+              withCredentials([gitUsernamePassword(credentialsId: 'github-credential', gitToolName: 'git-tool')]) {
                   sh '''
                   cat flask-service/deploy.yaml
                   sed -i "s/service-flask.*/${IMAGENAME}:${VERSION}/g" flask-service/deploy.yaml
@@ -102,7 +102,7 @@ pipeline {
                   git remote -v
                   git push origin main
                   '''                        
-              // }
+              }
           }
       }
         }
