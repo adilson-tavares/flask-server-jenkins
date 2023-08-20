@@ -84,7 +84,7 @@ pipeline {
 
     stage('Checkout Source k8s manifest') {
       steps {
-        git branch: 'main', url: 'https://github.com/adilson-tavares/jenkins-webhook.git',
+        git branch: 'main', url: 'https://github.com/adilson-tavares/jenkins-webhook.git'
         // credentialsId: 'github-credential'
       }
     }
