@@ -95,7 +95,7 @@ pipeline {
               withCredentials([usernamePassword(credentialsId: 'github-credential', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                   sh '''
                   cat flask-service/deploy.yaml
-                  sed -i '' "s/${BUILD_NUMBER}/g" flask-service/deploy.yaml
+                  sed -i 's/service-flask.*/${IMAGENAME}:${VERSION}/g' flask-service/deploy.yaml
                   cat flask-service/deploy.yaml
                   git add flask-service/deploy.yaml
                   git commit -m 'Updated the deploy yaml | Jenkins Pipeline'
