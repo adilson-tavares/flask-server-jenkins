@@ -92,7 +92,7 @@ pipeline {
     stage('Update K8S manifest & push to Repo'){
       steps {
           script{
-              withCredentials([usernamePassword(credentialsId: 'github-credential', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+              withCredentials([usernameColonPassword(credentialsId: 'github-credential', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                   sh '''
                   cat flask-service/deploy.yaml
                   sed -i "s/service-flask.*/${IMAGENAME}:${VERSION}/g" flask-service/deploy.yaml
