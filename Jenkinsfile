@@ -93,8 +93,8 @@ pipeline {
       steps {
         git branch: 'main', url: 'https://github.com/adilson-tavares/jenkins-webhook.git',
           // script{
-            // withCredentials([gitUsernamePassword(credentialsId: 'github-credential',
-                //  gitToolName: 'git-tool')]) {
+            withCredentials([gitUsernamePassword(credentialsId: 'github-credential',
+                 gitToolName: 'git-tool')]) {
 
 
                 // git branch: 'main', url: 'https://github.com/adilson-tavares/jenkins-webhook.git',
@@ -108,7 +108,7 @@ pipeline {
                   // sh " git remote -v "
                   sh " git push -u origin main "
                                          
-              // }
+              }
           // }
       }
         }
