@@ -100,7 +100,7 @@ pipeline {
                 // credentialsId: 'github-credential'
               // withCredentials([gitUsernamePassword(credentialsId: 'github-credential', gitToolName: 'git-tool')]) {
                   sh " cat flask-service/deploy.yaml"
-                  sh " sed -i 's/service-flask.*/${IMAGENAME}:${VERSION}/g' flask-service/deploy.yaml
+                  sh " sed -i 's/service-flask.*/${IMAGENAME}:${VERSION}/g' flask-service/deploy.yaml"
                   sh " cat flask-service/deploy.yaml "
                   sh " git add flask-service/deploy.yaml "
                   sh " git commit -m 'Updated the deploy yaml | Jenkins Pipeline' "
