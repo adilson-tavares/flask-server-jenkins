@@ -100,7 +100,7 @@ pipeline {
                   git add flask-service/deploy.yaml
                   git commit -m 'Updated the deploy yaml | Jenkins Pipeline'
                   git remote -v
-                  git push origin main
+                  git push -u origin main
                   '''                        
               }
           }
