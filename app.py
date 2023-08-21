@@ -16,7 +16,7 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 @app.route("/")
 def hello_world():
-    return "<p>This is a Hello World my python tste</p>"
+    return "<p>This is a Hello World my python with Jenkinsfile</p>"
 
 @app.route("/add", methods=['GET', 'POST'])
 def add():
