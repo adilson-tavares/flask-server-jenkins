@@ -106,7 +106,7 @@ pipeline {
                   sh " cat flask-service/deploy.yaml "
                   sh " git add flask-service/deploy.yaml "
                   sh " git commit -m 'Updated the deploy yaml | Jenkins Pipeline' "
-                  // sh " git remote -v "
+                  sh " git remote -v "
                   sh " git push -u origin main "
                                          
               }
