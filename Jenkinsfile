@@ -91,7 +91,8 @@ pipeline {
 
     stage('Update K8S manifest & push to Repo'){
       steps {
-          script{
+        git branch: 'main', url: 'https://github.com/adilson-tavares/jenkins-webhook.git',
+          // script{
             // withCredentials([gitUsernamePassword(credentialsId: 'github-credential',
                 //  gitToolName: 'git-tool')]) {
 
@@ -108,7 +109,7 @@ pipeline {
                   sh " git push -u origin main "
                                          
               // }
-          }
+          // }
       }
         }
 
