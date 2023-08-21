@@ -104,8 +104,11 @@ pipeline {
                   sh " cat flask-service/deploy.yaml"
                   sh " sed -i 's/service-flask.*/${IMAGENAME}:${VERSION}/g' flask-service/deploy.yaml"
                   sh " cat flask-service/deploy.yaml "
+                  sh " sed -i 's/service-flask.*/${IMAGENAME}:${VERSION}/g' flask-service/pod.yaml"
+                  sh " cat flask-service/pod.yaml "
                   sh " git add flask-service/deploy.yaml "
-                  sh " git commit -m 'Updated the deploy yaml | Jenkins Pipeline' "
+                  sh " git add flask-service/pod.yaml "
+                  sh " git commit -m 'Updated the deploy and pod yaml | Jenkins Pipeline' "
                   sh " git remote -v "
                   sh " git push https://github.com/adilson-tavares/jenkins-webhook.git main "
                                          
