@@ -82,33 +82,32 @@ pipeline {
       }
     }
 
-    stage('Checkout Source k8s manifest') {
-      steps {
-        git branch: 'main', url: 'https://github.com/adilson-tavares/jenkins-webhook.git',
-        credentialsId: 'github-credential'
-      }
-    }
+    // stage('Checkout Source k8s manifest') {
+    //   steps {
+    //     git branch: 'main', url: 'https://github.com/adilson-tavares/jenkins-webhook.git',
+    //     // credentialsId: 'github-credential'
+    //   }
+    // }
 
     stage('Update K8S manifest & push to Repo'){
       steps {
           script{
-            withCredentials([gitUsernamePassword(credentialsId: 'github-credential',
-                 gitToolName: 'git-tool')]) {
+            // withCredentials([gitUsernamePassword(credentialsId: 'github-credential',
+                //  gitToolName: 'git-tool')]) {
 
 
                 // git branch: 'main', url: 'https://github.com/adilson-tavares/jenkins-webhook.git',
                 // credentialsId: 'github-credential'
               // withCredentials([gitUsernamePassword(credentialsId: 'github-credential', gitToolName: 'git-tool')]) {
-                  sh '''
-                  cat flask-service/deploy.yaml
-                  sed -i "s/service-flask.*/${IMAGENAME}:${VERSION}/g" flask-service/deploy.yaml
-                  cat flask-service/deploy.yaml
-                  git add flask-service/deploy.yaml
-                  git commit -m 'Updated the deploy yaml | Jenkins Pipeline'
-                  git remote -v
-                  git push -u origin main
-                  '''                        
-              }
+                  sh " cat flask-service/deploy.yaml"
+                  sh " sed -i "s/service-flask.*/${IMAGENAME}:${VERSION}/g" flask-service/deploy.yaml
+                  sh " cat flask-service/deploy.yaml "
+                  sh " git add flask-service/deploy.yaml "
+                  sh " git commit -m 'Updated the deploy yaml | Jenkins Pipeline' "
+                  // sh " git remote -v "
+                  sh " git push -u origin main "
+                                         
+              // }
           }
       }
         }
